@@ -59,16 +59,24 @@ CRM VARCHAR(200),
 );
 GO
 
-CREATE TABLE SITUACAO(
+CREATE TABLE Situacao(
 idSituacao INT PRIMARY KEY IDENTITY,
 Status VARCHAR(200),
 );
 GO
 
-CREATE TABLE CONSULTA(
+CREATE TABLE Consulta(
 idConsulta INT PRIMARY KEY IDENTITY,
 idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
 idMedico INT FOREIGN KEY REFERENCES Medico(idMedico),
 idSituacao INT FOREIGN KEY REFERENCES Situacao(idSituacao),
+DataConsulta SMALLDATETIME,
+DescricaoConsulta VARCHAR(500)
+);
+GO
+
+CREATE TABLE Especialidade(
+	idEspecialidade INT PRIMARY KEY IDENTITY,
+	NomeEspecialidades VARCHAR(100)
 );
 GO
