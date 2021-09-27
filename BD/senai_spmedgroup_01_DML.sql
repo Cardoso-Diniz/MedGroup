@@ -19,12 +19,12 @@ VALUES ('1','senai@132','senaizap'),
 GO
 
 INSERT INTO Paciente(idUsuarioPossui,idEndereco,NomePaciente,DataNascimento,Telefone,Rg,Cpf)
-VALUES ('3','1','Guilherme','20041107','11982697150','9301929304','45626492836'),
-       ('4','2','Ricardo','20040923','11982697160','94329452385','45626436732');
+VALUES ('5','1','Guilherme','20041107','11982697150','9301929304','45626492836'),
+       ('6','2','Ricardo','20040923','11982697160','94329452385','45626436732');
 GO
 
 INSERT INTO Medico(idUsuarioPossui,idClinica,idPaciente,NomeMedico,CRM)
-VALUES ('3','1','5','Saulo','204SP')
+VALUES ('5','1','5','Saulo','204SP')
 GO
 
 INSERT INTO Situacao(Status)
@@ -34,8 +34,8 @@ VALUES ('Bem'),
 GO
 
 INSERT INTO Consulta(idPaciente,idMedico,idSituacao,DataConsulta,DescricaoConsulta)
-VALUES ('5','7','1','20211107 15:30','Paciente com dor de cabeça'),
-	   ('6','7','1','20211107 16:30','Paciente com dor no corpo')
+VALUES ('5','5','1','20211107 15:30','Paciente com dor de cabeça'),
+	   ('6','6','1','20211107 16:30','Paciente com dor no corpo')
 GO
 
 INSERT INTO Especialidade(NomeEspecialidades)
