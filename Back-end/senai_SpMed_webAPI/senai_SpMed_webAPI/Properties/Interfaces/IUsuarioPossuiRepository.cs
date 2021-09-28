@@ -1,4 +1,4 @@
-﻿using senai_SpMed_webAPI.Properties.Domains;
+﻿using senai_SpMed_webAPI.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace senai_SpMed_webAPI.Properties.Interfaces
 {
-    interface IUsuarioPossuiRepository
+    interface IUsuarioPossuiPossuiRepository
     {
-        UsuarioPossuiDomain Login(string email, string senha);
+        UsuarioPossui Login(string email, string senha);
+        List<UsuarioPossui> Listar();
+        UsuarioPossui BuscarPorId();
+        void Cadastrar(UsuarioPossui novaUsuarioPossui);
+        void Atualizar(int idUsuarioPossui, UsuarioPossui UsuarioPossuiAtualizada);
+        void Deletar(int idUsuarioPossui, UsuarioPossui UsuarioPossuiDeletar);
     }
 }

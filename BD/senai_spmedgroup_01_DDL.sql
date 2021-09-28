@@ -75,8 +75,17 @@ DescricaoConsulta VARCHAR(500)
 );
 GO
 
+
 CREATE TABLE Especialidade(
 	idEspecialidade INT PRIMARY KEY IDENTITY,
 	NomeEspecialidades VARCHAR(100)
 );
+GO
+
+ALTER TABLE Medico
+ADD idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario)
+GO
+
+ALTER TABLE Paciente
+ADD idEspecialidade INT FOREIGN KEY REFERENCES Especialidade(idEspecialidade)
 GO
