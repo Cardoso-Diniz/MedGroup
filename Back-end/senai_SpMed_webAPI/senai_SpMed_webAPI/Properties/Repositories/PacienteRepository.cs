@@ -14,17 +14,17 @@ namespace senai_SpMed_webAPI.Properties.Repositories
         MedGroupContext ctx = new MedGroupContext();
         public void Atualizar(int idPaciente, Paciente PacienteAtualizada)
         {
-            Paciente PacBuscado = ctx.Pacientes.Find(idPaciente);
+            Paciente novaPaciente = ctx.Pacientes.Find(idPaciente);
             if (PacienteAtualizada.NomePaciente != null)
             {
-                PacBuscado.NomePaciente = PacienteAtualizada.NomePaciente;
+                novaPaciente.NomePaciente = PacienteAtualizada.NomePaciente;
             }
 
             if (PacienteAtualizada.Telefone != null)
             {
-                PacBuscado.Telefone = PacienteAtualizada.Telefone;
+                novaPaciente.Telefone = PacienteAtualizada.Telefone;
             }
-            ctx.Pacientes.Update(PacBuscado);
+            ctx.Pacientes.Update(novaPaciente);
             ctx.SaveChanges();
         }
 
@@ -41,8 +41,8 @@ namespace senai_SpMed_webAPI.Properties.Repositories
 
         public void Deletar(int id)
         {
-            Paciente PacBuscado = ctx.Pacientes.Find(id);
-            ctx.Consulta.Remove(PacBuscado);
+            Paciente novaPaciente = ctx.Pacientes.Find(id);
+            ctx.Pacientes.Remove(novaPaciente);
             ctx.SaveChanges();
         }
 

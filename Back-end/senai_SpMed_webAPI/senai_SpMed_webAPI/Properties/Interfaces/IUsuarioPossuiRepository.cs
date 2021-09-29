@@ -10,7 +10,7 @@ namespace senai_SpMed_webAPI.Properties.Interfaces
     {
         UsuarioPossui Login(string email, string senha);
         List<UsuarioPossui> Listar();
-        UsuarioPossui BuscarPorId();
+        UsuarioPossui BuscarPorId(int id);
         void Cadastrar(UsuarioPossui novaUsuarioPossui);
         void Atualizar(int idUsuarioPossui, UsuarioPossui UsuarioPossuiAtualizada);
         void Deletar(int idUsuarioPossui, UsuarioPossui UsuarioPossuiDeletar);

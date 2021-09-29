@@ -12,6 +12,6 @@ namespace senai_SpMed_webAPI.Properties.Interfaces
         Usuario BuscarPorId(int id);
         void Cadastrar(Usuario novaUsuario);
         void Atualizar(int idUsuario, Usuario UsuarioAtualizada);
-        void Deletar(int idUsuario, Usuario UsuarioDeletar);
+        void Deletar(int id);
     }
 }

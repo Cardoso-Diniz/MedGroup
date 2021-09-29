@@ -5703,19 +5703,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fic\\.nuget\\packages\\": {}
+    "C:\\Users\\guica\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+      "projectUniqueName": "C:\\Users\\guica\\Desktop\\SENAI 2\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
       "projectName": "senai_SpMed_webAPI",
-      "projectPath": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
-      "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
+      "projectPath": "C:\\Users\\guica\\Desktop\\SENAI 2\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+      "packagesPath": "C:\\Users\\guica\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\guica\\Desktop\\SENAI 2\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\guica\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

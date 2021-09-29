@@ -25,7 +25,7 @@ namespace senai_SpMed_webAPI.Contexts
         public virtual DbSet<Medico> Medicos { get; set; }
         public virtual DbSet<Paciente> Pacientes { get; set; }
         public virtual DbSet<Situacao> Situacaos { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Usuario> UsuariosPossui { get; set; }
         public virtual DbSet<UsuarioPossui> UsuarioPossuis { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

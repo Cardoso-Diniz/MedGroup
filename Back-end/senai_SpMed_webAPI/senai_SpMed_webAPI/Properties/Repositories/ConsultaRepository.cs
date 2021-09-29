@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace senai_SpMed_webAPI.Properties.Repositories
 {
-    public class ConsultaRepository : IConsultaRepository
+    public class ConsultaRepository : IUsuarioPossuiRepository
     {
         MedGroupContext ctx = new MedGroupContext();
 
