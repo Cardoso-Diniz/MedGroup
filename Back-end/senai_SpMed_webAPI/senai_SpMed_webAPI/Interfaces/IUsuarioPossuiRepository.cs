@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace senai_SpMed_webAPI.Properties.Interfaces
 {
-    interface IUsuarioPossuiPossuiRepository
+    interface IUsuarioPossuiRepository
     {
         UsuarioPossui Login(string email, string senha);
         List<UsuarioPossui> Listar();

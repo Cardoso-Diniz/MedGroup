@@ -30,3 +30,5 @@ SELECT * FROM Medico;
 SELECT * FROM Situacao;
 SELECT * FROM Consulta;
 SELECT * FROM Especialidade;
+
+DELETE from Usuario   WHERE idUsuario = 4

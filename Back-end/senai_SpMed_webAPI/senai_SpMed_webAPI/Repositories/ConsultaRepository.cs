@@ -7,12 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace senai_SpMed_webAPI.Properties.Repositories
+namespace senai_SpMed_webAPI.Repositories
 {
-    public class ConsultaRepository : IUsuarioPossuiRepository
+    public class ConsultaRepository : IConsultaRepository
     {
         MedGroupContext ctx = new MedGroupContext();
-
         public void Atualizar(int idConsulta, Consultum ConsultaAtualizada)
         {
             Consultum ConBuscada = ctx.Consulta.Find(idConsulta);
@@ -26,7 +25,7 @@ namespace senai_SpMed_webAPI.Properties.Repositories
 
         public Consultum BuscarPorId(int id)
         {
-            return ctx.Consulta.FirstOrDefault(e => e.IdConsulta == id);
+            return ctx.Consulta.FirstOrDefault(e => e.IdConsulta == id); throw new NotImplementedException();
         }
 
         public void Cadastrar(Consultum novaConsulta)

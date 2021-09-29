@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace senai_SpMed_webAPI.Properties.Interfaces
 {
-    interface IUsuarioPossuiRepository
+    interface IConsultaRepository
     {
         List<Consultum> ListarTudo();
         List<Consultum> ListarCon();
