@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
@@ -31,6 +32,25 @@ namespace senai_SpMed_webAPI
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
 
+            services
+                .AddAuthentication(options => {
+                    options.DefaultAuthenticateScheme = "JwtBearer";
+                    options.DefaultChallengeScheme = "JwtBearer";
+                })
+
+                .AddJwtBearer("JwtBearer", options => {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-chave-autenticacao")),
+                        ClockSkew = TimeSpan.FromMinutes(30),
+                        ValidIssuer = "MedGrup.webApi",
+                        ValidAudience = "MedGrup.webApi"
+                    };
+                });
+
             // Adiciona o serviço do Swagger
             // https://docs.microsoft.com/pt-br/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-5.0&tabs=visual-studio
 
@@ -54,6 +74,7 @@ namespace senai_SpMed_webAPI
                 
             }
 
+
             app.UseSwagger();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -65,6 +86,10 @@ namespace senai_SpMed_webAPI
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

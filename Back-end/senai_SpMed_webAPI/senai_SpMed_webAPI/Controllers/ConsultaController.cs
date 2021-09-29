@@ -24,7 +24,7 @@ namespace senai_SpMed_webAPI.Controllers
             Con = new ConsultaRepository();
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -38,7 +38,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "2")]
         [HttpGet("ListarTudo")]
         public IActionResult ListarTudo()
         {
@@ -98,7 +98,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult NovoCon(Consultum NovoCon)
         {
@@ -113,7 +113,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id, Consultum ConDeletar)
         {
@@ -143,7 +143,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "1")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Consultum status)
         {

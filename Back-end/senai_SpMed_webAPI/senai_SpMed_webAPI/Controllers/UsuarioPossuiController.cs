@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai_SpMed_webAPI.Domains;
 using senai_SpMed_webAPI.Properties.Interfaces;
@@ -35,6 +36,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult Cadastrar(UsuarioPossui novaUsuarioPossui)
         {

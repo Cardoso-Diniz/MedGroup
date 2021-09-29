@@ -15,7 +15,8 @@ GO
 
 INSERT INTO UsuarioPossui(idUsuario,Email,Senha)
 VALUES ('1','senai@132','senaizap'),
-	   ('2','senaiapi@132','senaizap123');
+	   ('2','senaiapi@132','senaizap123'),
+	   ('3','paciente@gmail.com','senai1234');
 GO
 
 INSERT INTO Paciente(idUsuarioPossui,idEndereco,NomePaciente,DataNascimento,Telefone,Rg,Cpf)

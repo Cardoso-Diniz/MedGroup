@@ -50,7 +50,7 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(ex);
             }
         }
-
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult Cadastro(Paciente NovoPac)
         {

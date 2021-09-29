@@ -39,9 +39,9 @@ namespace senai_SpMed_webAPI.Controllers
                 var Claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuarioPossui.ToString()),
                     new Claim(ClaimTypes.Role, usuarioBuscado.IdUsuarioPossui.ToString()),
-                    new Claim("role", usuarioBuscado.IdUsuarioPossui.ToString()),
+                    new Claim("role", usuarioBuscado.IdUsuario.ToString()),
                     new Claim("nameUser", usuarioBuscado.Email)
                 };
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-chave-autenticacao"));
@@ -52,7 +52,7 @@ namespace senai_SpMed_webAPI.Controllers
                         issuer: "MedGrup.webApi",
                         audience: "MedGrup.webApi",
                         claims: Claims,
-                        expires: DateTime.Now.AddMinutes(10),
+                        expires: DateTime.Now.AddMinutes(30),
                         signingCredentials: creds
                     );
                 return Ok(new
