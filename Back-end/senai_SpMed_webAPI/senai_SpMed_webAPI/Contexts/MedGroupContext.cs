@@ -32,7 +32,7 @@ namespace senai_SpMed_webAPI.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=NOTE0113E5\\SQLEXPRESS; initial catalog=MedGroup; user Id=sa; pwd=Senai@132;");
+                optionsBuilder.UseSqlServer("Data Source=NOTE0113C4\\SQLEXPRESS; initial catalog=MedGroup; user Id=sa; pwd=Senai@132;");
             }
         }
 

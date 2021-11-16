@@ -5703,19 +5703,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fic\\.nuget\\packages\\": {}
+    "C:\\Users\\45626492836\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+      "projectUniqueName": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
       "projectName": "senai_SpMed_webAPI",
-      "projectPath": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
-      "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fic\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
+      "projectPath": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+      "packagesPath": "C:\\Users\\45626492836\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\45626492836\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5792,7 +5792,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
