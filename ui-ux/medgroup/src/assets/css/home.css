@@ -18,12 +18,12 @@
 }
 
 /* Conteúdo */
-main_home{
+.mainhome{
     background-image: url(../img/imagemhome.png);
     height: 998px;
 }
 
-.cor{
+.corhome{
     background-color: rgba(65, 65, 65, 0.65);
     height: 998px;
 
