@@ -7,7 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {StatusBar, StyleSheet} from 'react-native';
 
-// import Main from './src/screens/Main';
+import Main from './src/screens/Main';
 import Login from './src/screens/Login';
 
 const AuthStack = createStackNavigator();

@@ -18,12 +18,12 @@ export default class Login extends Component {
         super(props);
         this.state = {
             email: 'senaiapi@132',
-            senha: 'paciente@gmail.com',
+            senha: 'senaizap123',
         };
     }
-    //como vamos trabalhar com assync historage,
+     //como vamos trabalhar com assync historage,
     //nossa funcao tem que ser async.
-    /* realizarLogin = async () => {
+    realizarLogin = async () => {
         //nao temos mais  console log.
         //vamos utilizar console.warn.
 
@@ -40,14 +40,14 @@ export default class Login extends Component {
         await AsyncStorage.setItem('userToken', token);
 
         //agora sim podemos descomentar.
-        // if (resposta.status == 200) {
-        //     this.props.navigation.navigate('Main');
-        // }
+        if (resposta.status == 200) {
+            this.props.navigation.navigate('Main');
+        }
 
         console.warn(token);
 
         //
-    }; */
+    };
 
     render() {
         return (
@@ -67,7 +67,7 @@ export default class Login extends Component {
                                 placeholder="Email"
                                 placeholderTextColor="#FFF"
                                 keyboardType="email-address"
-                                // ENVENTO PARA FAZERMOS ALGO ENQUANTO O TEXTO MUDA
+                                ENVENTO PARA FAZERMOS ALGO ENQUANTO O TEXTO MUDA
                                 onChangeText={email => this.setState({ email })}
                             />
 
@@ -77,7 +77,7 @@ export default class Login extends Component {
                                 placeholderTextColor="#FFF"
                                 keyboardType="default" //para default nao obrigatorio.
                                 secureTextEntry={true} //proteje a senha.
-                                // ENVENTO PARA FAZERMOS ALGO ENQUANTO O TEXTO MUDA
+                                ENVENTO PARA FAZERMOS ALGO ENQUANTO O TEXTO MUDA
                                 onChangeText={senha => this.setState({ senha })}
                             />
 
@@ -95,7 +95,7 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-    //antes da main
+    // antes da main
     overlay: {
         ...StyleSheet.absoluteFillObject, //todas as prop do styleShhet, e vamos aplica o abosluteFIL...
         backgroundColor: 'rgba(109, 175, 236, 0.75)', //rgba pq vamos trabalhar com transparencia.
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 
     // conteúdo da main
     main: {
-        // flex: 1,
+        flex: 1,
         backgroundColor: '#27B2DE',
         justifyContent: 'center',
         alignItems: 'center',
@@ -114,8 +114,6 @@ const styles = StyleSheet.create({
 
 
     boxLogin:{
-        borderColor: '#FFF', //linha separadora
-        borderWidth: 4, //espessura.
         borderRadius: 25,
         backgroundColor: 'transparent',
         padding:50,
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     },
 
     inputLogin: {
-        width: 240, //largura mesma do botao
+        width: 250, //largura mesma do botao
         marginBottom: 40, //espacamento pra baixo
         fontSize: 18,
         color: '#FFF',
@@ -138,15 +136,15 @@ const styles = StyleSheet.create({
         fontSize: 18, //aumentar um pouco
         fontFamily: 'Open Sans Light', //troca de fonte
         color: '#fff', //mesma cor identidade
-        // letterSpacing: 6, //espacamento entre as letras
+        letterSpacing: 6, //espacamento entre as letras
         textTransform: 'uppercase', //estilo maiusculo
     },
     btnLogin: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 38,
-        width: 93,
-        // borderWidth: 1,
+        height: 55,
+        width: 120,
+        borderWidth: 1,
         shadowOffset: { height: 1, width: 1 },
         borderColor: '#055BC0', //linha separadora
         borderWidth: 2, //espessura.

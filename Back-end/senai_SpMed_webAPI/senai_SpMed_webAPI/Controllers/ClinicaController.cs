@@ -24,7 +24,7 @@ namespace senai_SpMed_webAPI.Controllers
             _clinicaRepository = new ClinicaRepository();
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize()]
         [HttpGet]
         public IActionResult ListarTodas()
         {
@@ -37,7 +37,7 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(erro);
             }
         }
-        [Authorize(Roles = "1")]
+        [Authorize]
         [HttpGet("{idClinica}")]
         public IActionResult BuscarPorId(int idClinica)
         {
@@ -50,7 +50,7 @@ namespace senai_SpMed_webAPI.Controllers
                     return Ok(clinicaBuscada);
                 }
 
-                return BadRequest("A clinica requisitada não existe");
+                return BadRequest("A clinica buscada não existe");
 
             }
             catch (Exception erro)

@@ -38,7 +38,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         [HttpGet("ListarTudo")]
         public IActionResult ListarTudo()
         {
@@ -52,7 +52,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "2,3")]
         [HttpGet("UsuarioConsultas")]
         public IActionResult UsuarioConsulta()
         {
@@ -68,21 +68,21 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
-        [HttpGet("MedicoConsultas")]
-        public IActionResult MedicoConsultas()
-        {
-            try
-            {
-                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+        //[Authorize(Roles = "1")]
+        //[HttpGet("MedicoConsultas")]
+        //public IActionResult MedicoConsultas()
+        //{
+        //    try
+        //    {
+        //        int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
-                return Ok(Con.MedicoCon(idUsuario));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
+        //        return Ok(Con.MedicoCon(idUsuario));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
 
         [Authorize(Roles = "3")]
         [HttpGet("{id}")]
@@ -113,7 +113,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id, Consultum ConDeletar)
         {
@@ -128,7 +128,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult AtualizarDados(int id, Consultum NovaCon)
         {
@@ -143,7 +143,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "3s")]
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Consultum status)
         {
