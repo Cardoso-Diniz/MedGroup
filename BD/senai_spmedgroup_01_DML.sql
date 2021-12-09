@@ -25,7 +25,7 @@ VALUES ('1','1','Guilherme','20041107','11982697150','9301929304','45626492836')
 GO
 
 INSERT INTO Medico(idUsuarioPossui,idClinica,idPaciente,NomeMedico,CRM,idUsuario)
-VALUES ('2','1','13','Saulo','204SP','2')
+VALUES ('2','1','2','Saulo','204SP','2')
 GO
 
 INSERT INTO Situacao(Status)
@@ -35,8 +35,8 @@ VALUES ('Bem'),
 GO
 
 INSERT INTO Consulta(idPaciente,idMedico,idSituacao,DataConsulta,DescricaoConsulta)
-VALUES ('13','9','1','20211107 15:30','Paciente com dor de cabeça'),
-	   ('13','9','1','20211107 16:30','Paciente com dor no corpo')
+VALUES ('2','4','1','20211107 15:30','Paciente com dor de cabeça'),
+	   ('2','4','1','20211107 16:30','Paciente com dor no corpo')
 GO
 
 INSERT INTO Especialidade(NomeEspecialidades)

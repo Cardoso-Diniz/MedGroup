@@ -52,7 +52,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "2,3")]
+        
         [HttpGet("UsuarioConsultas")]
         public IActionResult UsuarioConsulta()
         {
@@ -68,21 +68,6 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        //[Authorize(Roles = "1")]
-        //[HttpGet("MedicoConsultas")]
-        //public IActionResult MedicoConsultas()
-        //{
-        //    try
-        //    {
-        //        int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-
-        //        return Ok(Con.MedicoCon(idUsuario));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex);
-        //    }
-        //}
 
         [Authorize(Roles = "3")]
         [HttpGet("{id}")]

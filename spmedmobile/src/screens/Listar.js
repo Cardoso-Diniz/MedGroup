@@ -10,115 +10,115 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../services/api';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 export default class Listar extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            listaMedico: [],
-        };
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         listaMedico: [],
+    //     };
+    // }
 
-    buscarConsultas = async () => {
-        try {
-            const token = await AsyncStorage.getItem('userToken');
-            const resposta = await api.get('/consulta/minhas', {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                },
-            });
+    // buscarConsultas = async () => {
+    //     try {
+    //         const token = await AsyncStorage.getItem('userToken');
+    //         const resposta = await api.get('/consulta/UsuariosConsultas', {
+    //             headers: {
+    //                 Authorization: 'Bearer ' + token,
+    //             },
+    //         });
 
-            if (resposta.status === 200) {
-                const dadosDaApi = resposta.data;
-                this.setState({ listaMedico: dadosDaApi });
-            }
-        } catch (error) {
-            console.warn(error);
-        }
-    };
+    //         if (resposta.status === 200) {
+    //             const dadosDaApi = resposta.data;
+    //             this.setState({ listaMedico: dadosDaApi });
+    //         }
+    //     } catch (error) {
+    //         console.warn(error);
+    //     }
+    // };
 
-    componentDidMount() {
-        this.buscarConsultas();
-    }
+    // componentDidMount() {
+    //     this.buscarConsultas();
+    // }
 
     render() {
         return (
             <View>
-            <View style={styles.overlay}>
         </View>
+        //     <View style={styles.overlay}>
                 
-                    <View style={styles.main}>
-                        <Image
-                            source={require('../../assets/img/logo.png')}
-                            style={styles.mainImgLogin}
-                        />
-                        <View style={styles.Container}>
+        //             <View style={styles.main}>
+        //                 <Image
+        //                     source={require('../../assets/img/logo.png')}
+        //                     style={styles.mainImgLogin}
+        //                 />
+        //                 <View style={styles.Container}>
 
-                            <View style={styles.Box_tiutlo}>
-                                <Text style={styles.Titulo}>
-                                    {'Consultas'.toUpperCase()}
-                                </Text>
-                            </View>
+        //                     <View style={styles.Box_tiutlo}>
+        //                         <Text style={styles.Titulo}>
+        //                             {'Consultas'.toUpperCase()}
+        //                         </Text>
+        //                     </View>
 
-                            <FlatList
-                                data={this.state.listaMedico}
-                                keyExtractor={item => item.idConsulta}
-                                renderItem={this.renderItem}
-                            />
-                        </View>
-                    </View>
-            </View>
+        //                     <FlatList
+        //                         data={this.state.listaMedico}
+        //                         keyExtractor={item => item.idConsulta}
+        //                         renderItem={this.renderItem}
+        //                     />
+        //                 </View>
+        //             </View>
+        //     </View>
         );
     }
 
-    renderItem = ({ item }) => (
-        <View>
-            <View style={styles.ListarDiv}>
-                    <Text style={styles.ListagemNome}>{'DIA '+ item.idConsulta }</Text>
-                <View style={styles.Box_Projeto}>
-                    </View>
+//     renderItem = ({ item }) => (
+//         <View>
+//             <View style={styles.ListarDiv}>
+//                     <Text style={styles.ListagemNome}>{'DIA '+ item.idConsulta }</Text>
+//                 <View style={styles.Box_Projeto}>
+//                     </View>
                 
 
-                <Text style={styles.ListagemTitulo}>Data</Text>
-                <Text style={styles.ListagemDados}>{Intl.DateTimeFormat("pt-BR", {
-                                year: 'numeric', month: 'numeric', day: 'numeric',
-                                hour: 'numeric', minute: 'numeric',
-                                hour12: true                                                
-                            }).format(new Date(item.dataConsulta))}</Text>
-                <Text style={styles.ListagemTitulo}>Descrição</Text>
-                <Text style={styles.ListagemDados}>{item.descricao}</Text>
-                <Text style={styles.ListagemTitulo}>Situação</Text>
-                <Text style={styles.ListagemDados}>{item.idSituacaoNavigation.situacao1}</Text>
+//                 <Text style={styles.ListagemTitulo}>Data</Text>
+//                 <Text style={styles.ListagemDados}>{Intl.DateTimeFormat("pt-BR", {
+//                                 year: 'numeric', month: 'numeric', day: 'numeric',
+//                                 hour: 'numeric', minute: 'numeric',
+//                                 hour12: true                                                
+//                             }).format(new Date(item.dataConsulta))}</Text>
+//                 <Text style={styles.ListagemTitulo}>Descrição</Text>
+//                 <Text style={styles.ListagemDados}>{item.descricao}</Text>
+//                 <Text style={styles.ListagemTitulo}>Situação</Text>
+//                 <Text style={styles.ListagemDados}>{item.idSituacaoNavigation.situacao1}</Text>
 
-                <Text style={styles.ListagemNome}>PACIENTE</Text>
-                <Text style={styles.ListagemTitulo}>Nome</Text>
-                <Text style={styles.ListagemDados}>{item.idPacienteNavigation.nomePaciente}</Text>
-                <Text style={styles.ListagemTitulo}>RG</Text>
-                <Text style={styles.ListagemDados}>{item.idPacienteNavigation.rg}</Text>
-                <Text style={styles.ListagemTitulo}>CPF</Text>
-                <Text style={styles.ListagemDados}>{item.idPacienteNavigation.cpf}</Text>
-                <Text style={styles.ListagemTitulo}>Data Nascimento</Text>
-                <Text style={styles.ListagemDados}>{Intl.DateTimeFormat("pt-BR", {
-                                            year: 'numeric', month: 'short', day: 'numeric',
+//                 <Text style={styles.ListagemNome}>PACIENTE</Text>
+//                 <Text style={styles.ListagemTitulo}>Nome</Text>
+//                 <Text style={styles.ListagemDados}>{item.idPacienteNavigation.nomePaciente}</Text>
+//                 <Text style={styles.ListagemTitulo}>RG</Text>
+//                 <Text style={styles.ListagemDados}>{item.idPacienteNavigation.rg}</Text>
+//                 <Text style={styles.ListagemTitulo}>CPF</Text>
+//                 <Text style={styles.ListagemDados}>{item.idPacienteNavigation.cpf}</Text>
+//                 <Text style={styles.ListagemTitulo}>Data Nascimento</Text>
+//                 <Text style={styles.ListagemDados}>{Intl.DateTimeFormat("pt-BR", {
+//                                             year: 'numeric', month: 'short', day: 'numeric',
 
-                                        }).format(new Date(item.idPacienteNavigation.dataNasc))}</Text>
-                <Text style={styles.ListagemTitulo}>Telefone</Text>
-                <Text style={styles.ListagemDados}>{item.idPacienteNavigation.telefone}</Text>
+//                                         }).format(new Date(item.idPacienteNavigation.dataNasc))}</Text>
+//                 <Text style={styles.ListagemTitulo}>Telefone</Text>
+//                 <Text style={styles.ListagemDados}>{item.idPacienteNavigation.telefone}</Text>
 
-                <Text style={styles.ListagemNome}>MÉDICO</Text>
-                <Text style={styles.ListagemTitulo}>Nome</Text>
-                <Text style={styles.ListagemDados}>{item.idMedicoNavigation.nomeMed}</Text>
-                <Text style={styles.ListagemTitulo}>CRM</Text>
-                <Text style={styles.ListagemDados}>{item.idMedicoNavigation.crm}</Text>
-                <Text style={styles.ListagemTitulo}>Especialidade</Text>
-                <Text style={styles.ListagemDados}>{item.idMedicoNavigation.idEspecialidadeNavigation.tituloEspecialidade}</Text>
+//                 <Text style={styles.ListagemNome}>MÉDICO</Text>
+//                 <Text style={styles.ListagemTitulo}>Nome</Text>
+//                 <Text style={styles.ListagemDados}>{item.idMedicoNavigation.nomeMed}</Text>
+//                 <Text style={styles.ListagemTitulo}>CRM</Text>
+//                 <Text style={styles.ListagemDados}>{item.idMedicoNavigation.crm}</Text>
+//                 <Text style={styles.ListagemTitulo}>Especialidade</Text>
+//                 <Text style={styles.ListagemDados}>{item.idMedicoNavigation.idEspecialidadeNavigation.tituloEspecialidade}</Text>
 
                 
-            </View>
-        </View>
-    );
+//             </View>
+//         </View>
+//     );
 }
 
 const styles = StyleSheet.create({
