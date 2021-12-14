@@ -24,7 +24,11 @@ namespace senai_SpMed_webAPI.Controllers
             _clinicaRepository = new ClinicaRepository();
         }
 
-        [Authorize()]
+        /// <summary>
+        /// Método responsável por listar todas as clinicas
+        /// </summary>
+        /// <returns>uma lista de clinicas</returns>
+        [Authorize]
         [HttpGet]
         public IActionResult ListarTodas()
         {
@@ -37,6 +41,12 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(erro);
             }
         }
+
+        /// <summary>
+        /// Método responsável por buscar uma clinica pelo id
+        /// </summary>
+        /// <param name="idClinica">id da clinica a ser procurada</param>
+        /// <returns>Uma clinica</returns>
         [Authorize]
         [HttpGet("{idClinica}")]
         public IActionResult BuscarPorId(int idClinica)
@@ -50,7 +60,7 @@ namespace senai_SpMed_webAPI.Controllers
                     return Ok(clinicaBuscada);
                 }
 
-                return BadRequest("A clinica buscada não existe");
+                return BadRequest("A clinica requisitada não existe");
 
             }
             catch (Exception erro)
@@ -59,7 +69,13 @@ namespace senai_SpMed_webAPI.Controllers
             }
 
         }
-        [Authorize(Roles = "1")]
+
+        /// <summary>
+        /// Método responsável por cadastrar uma nova clinica
+        /// </summary>
+        /// <param name="novaClinica">Objeto clinica com os atributos a serem cadastrados</param>
+        /// <returns>Status code 201 created</returns>
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult Cadastrar(Clinica novaClinica)
         {
@@ -75,7 +91,14 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(erro);
             }
         }
-        [Authorize(Roles = "1")]
+
+        /// <summary>
+        /// Método responsável por atualizar uma clinica
+        /// </summary>
+        /// <param name="idClinica">Id da clinica a ser buscada</param>
+        /// <param name="clinicaAtualizada">Objeto com atributos a serem inseridos</param>
+        /// <returns>Status code 204 no content</returns>
+        [Authorize(Roles = "2")]
         [HttpPut("{idClinica}")]
         public IActionResult Atualizar(int idClinica, Clinica clinicaAtualizada)
         {
@@ -91,7 +114,13 @@ namespace senai_SpMed_webAPI.Controllers
             }
 
         }
-        [Authorize(Roles = "1")]
+
+        /// <summary>
+        /// Método para excluir uma clinica
+        /// </summary>
+        /// <param name="idClinica">Id da clinica a ser buscada</param>
+        /// <returns>Status code 204 no content</returns>
+        [Authorize(Roles = "2")]
         [HttpDelete("{idClinica}")]
         public IActionResult Deletar(int idClinica)
         {
@@ -107,5 +136,6 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
     }
+
 
 }

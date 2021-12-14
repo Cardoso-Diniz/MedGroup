@@ -9,12 +9,12 @@ namespace senai_SpMed_webAPI.Domains
     {
         public Especialidade()
         {
-            Pacientes = new HashSet<Paciente>();
+            Medicos = new HashSet<Medico>();
         }
 
         public int IdEspecialidade { get; set; }
-        public string NomeEspecialidades { get; set; }
+        public string TituloEspecialidade { get; set; }
 
-        public virtual ICollection<Paciente> Pacientes { get; set; }
+        public virtual ICollection<Medico> Medicos { get; set; }
     }
 }

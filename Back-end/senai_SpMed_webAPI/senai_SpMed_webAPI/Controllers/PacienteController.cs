@@ -23,7 +23,7 @@ namespace senai_SpMed_webAPI.Controllers
             Pac = new PacienteRepository();
         }
 
-        //[Authorize(Roles = "3")]
+        [Authorize(Roles = "3")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -37,7 +37,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        //[Authorize(Roles = "3")]
+        [Authorize(Roles = "2")]
         [HttpGet("Tudo")]
         public IActionResult ListarTudo()
         {
@@ -50,7 +50,7 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(ex);
             }
         }
-        [Authorize(Roles = "2")]
+
         [HttpPost]
         public IActionResult Cadastro(Paciente NovoPac)
         {
@@ -65,7 +65,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        //[Authorize(Roles = "2")]
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
@@ -80,7 +80,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        //[Authorize(Roles = "2")]
+        [Authorize(Roles = "2")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, Paciente NovoPac)
         {

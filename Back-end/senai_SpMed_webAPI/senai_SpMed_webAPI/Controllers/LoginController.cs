@@ -20,44 +20,52 @@ namespace senai_SpMed_webAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private IUsuarioPossuiRepository _usuarioPossuiRepository { get; set; }
+        private IUsuarioRepository _usuarioRepository { get; set; }
 
         public LoginController()
         {
-            _usuarioPossuiRepository = new UsuarioPossuiRepository();
+            _usuarioRepository = new UsuarioRepository();
         }
-        [HttpPost()]
+
+        /// <summary>
+        /// Método responsável por fazer o login na api
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
             try
             {
-                UsuarioPossui usuarioBuscado = _usuarioPossuiRepository.Login(login.Email, login.Senha);
+                Usuario usuarioBuscado = _usuarioRepository.Login(login.Email, login.Senha);
+
                 if (usuarioBuscado == null)
                 {
-                    return NotFound("Usuario ou senha incorretos");
+                    return BadRequest("Email ou senha inválidos!");
                 }
-                var Claims = new[]
+                var minhasClaims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuarioPossui.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.IdUsuarioPossui.ToString()),
-                    new Claim("role", usuarioBuscado.IdUsuario.ToString()),
-                    new Claim("nameUser", usuarioBuscado.Email)
+                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString()),
+
+                    new Claim("role", usuarioBuscado.IdTipoUsuario.ToString())
                 };
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-chave-autenticacao"));
+
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spmedical-chave-autenticao"));
+
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                var token = new JwtSecurityToken
-                    (
-                        issuer: "MedGrup.webApi",
-                        audience: "MedGrup.webApi",
-                        claims: Claims,
+                var meuToken = new JwtSecurityToken(
+                        issuer: "spmedical.webAPI",
+                        audience: "spmedical.webAPI",
+                        claims: minhasClaims,
                         expires: DateTime.Now.AddMinutes(30),
                         signingCredentials: creds
                     );
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                    token = new JwtSecurityTokenHandler().WriteToken(meuToken)
                 });
             }
             catch (Exception ex)
@@ -65,6 +73,5 @@ namespace senai_SpMed_webAPI.Controllers
                 return BadRequest(ex);
             }
         }
-
     }
 }

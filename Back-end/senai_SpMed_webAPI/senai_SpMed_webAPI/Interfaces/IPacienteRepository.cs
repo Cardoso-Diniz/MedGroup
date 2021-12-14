@@ -11,8 +11,8 @@ namespace senai_SpMed_webAPI.Properties.Interfaces
         List<Paciente> Listar();
         List<Paciente> ListarTudo();
         Paciente BuscarPorId(int id);
-        void Cadastrar(Paciente novaPaciente);
-        void Atualizar(int idPaciente, Paciente PacienteAtualizada);
+        void Cadastrar(Paciente NovoPaciente);
         void Deletar(int id);
+        void Atualizar(int id, Paciente NovoPaciente);
     }
 }

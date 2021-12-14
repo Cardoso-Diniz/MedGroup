@@ -11,38 +11,48 @@ namespace senai_SpMed_webAPI.Properties.Repositories
     public class UsuarioRepository : IUsuarioRepository
     {
         MedGroupContext ctx = new MedGroupContext();
-        public void Atualizar(int idUsuario, Usuario UsuarioAtualizada)
+        public void Atualizar(int id, Usuario NovoUsuario)
         {
-            Usuario ConBuscada = ctx.UsuariosPossui.Find(idUsuario);
-            if (UsuarioAtualizada.TituloUsuario != null)
+            Usuario UsuarioBuscado = BuscarPorId(id);
+
+            if (NovoUsuario.IdTipoUsuario > 0 && NovoUsuario.Email != null && NovoUsuario.Senha != null)
             {
-                ConBuscada.TituloUsuario = UsuarioAtualizada.TituloUsuario;
+                UsuarioBuscado.IdTipoUsuario = NovoUsuario.IdTipoUsuario;
+                UsuarioBuscado.NomeUsuario = NovoUsuario.NomeUsuario;
+                UsuarioBuscado.Email = NovoUsuario.Email;
+                UsuarioBuscado.Senha = NovoUsuario.Senha;
+                ctx.Usuarios.Update(UsuarioBuscado);
+                ctx.SaveChanges();
             }
-            ctx.UsuariosPossui.Update(ConBuscada);
-            ctx.SaveChanges();
+
         }
 
         public Usuario BuscarPorId(int id)
         {
-            return ctx.UsuariosPossui.FirstOrDefault(e => e.IdUsuario == id);
+            return ctx.Usuarios.FirstOrDefault(e => e.IdUsuario == id);
         }
-        
-        public void Cadastrar(Usuario novaUsuario)
+
+        public void Cadastrar(Usuario NovoUsuario)
         {
-            ctx.Update(novaUsuario);
+            ctx.Add(NovoUsuario);
             ctx.SaveChanges();
         }
 
         public void Deletar(int id)
         {
-            Usuario UsuarioDeletar = ctx.UsuariosPossui.Find(id);
-            ctx.UsuariosPossui.Remove(UsuarioDeletar);
+            Usuario UsuarioBuscado = ctx.Usuarios.Find(id);
+            ctx.Usuarios.Remove(UsuarioBuscado);
             ctx.SaveChanges();
         }
 
         public List<Usuario> Listar()
         {
-            return ctx.UsuariosPossui.ToList();
+            return ctx.Usuarios.ToList();
+        }
+
+        public Usuario Login(string email, string senha)
+        {
+            return ctx.Usuarios.FirstOrDefault(e => e.Email == email && e.Senha == senha);
         }
     }
 }

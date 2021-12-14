@@ -15,16 +15,14 @@ namespace senai_SpMed_webAPI.Repositories
         {
             Clinica clinicaBuscada = BuscarPorId(idClinica);
 
-            if (clinicaAtualizada.IdEndereco != null && clinicaAtualizada.NomeDado != null && clinicaAtualizada.Cpnj != null && clinicaAtualizada.RazaoSocial != null && clinicaAtualizada.AberturaHorario != null && clinicaAtualizada.FechamentoHorario != null)
+            if (clinicaAtualizada.IdEndereco != null && clinicaAtualizada.NomeClinica != null && clinicaAtualizada.Cnpj != null && clinicaAtualizada.RazaoSocial != null)
             {
                 clinicaBuscada.IdEndereco = clinicaAtualizada.IdEndereco;
-                clinicaBuscada.NomeDado = clinicaAtualizada.NomeDado;
-                clinicaBuscada.Cpnj= clinicaAtualizada.Cpnj;
+                clinicaBuscada.NomeClinica = clinicaAtualizada.NomeClinica;
+                clinicaBuscada.Cnpj = clinicaAtualizada.Cnpj;
                 clinicaBuscada.RazaoSocial = clinicaAtualizada.RazaoSocial;
-                clinicaBuscada.AberturaHorario = clinicaAtualizada.AberturaHorario;
-                clinicaBuscada.FechamentoHorario = clinicaAtualizada.FechamentoHorario;
-
             }
+
             ctx.Clinicas.Update(clinicaBuscada);
 
             ctx.SaveChanges();
@@ -61,15 +59,13 @@ namespace senai_SpMed_webAPI.Repositories
                     {
                         Rua = c.IdEnderecoNavigation.Rua,
                         Numero = c.IdEnderecoNavigation.Numero,
-                        Bairro = c.IdEnderecoNavigation.Bairro,
                         Cidade = c.IdEnderecoNavigation.Cidade,
+                        Estado = c.IdEnderecoNavigation.Estado,
                         Cep = c.IdEnderecoNavigation.Cep
                     },
-                    NomeDado = c.NomeDado,
-                    Cpnj = c.Cpnj,
+                    NomeClinica = c.NomeClinica,
+                    Cnpj = c.Cnpj,
                     RazaoSocial = c.RazaoSocial,
-                    AberturaHorario = c.AberturaHorario,
-                    FechamentoHorario = c.FechamentoHorario,
                     Medicos = c.Medicos
                 }).ToList();
         }

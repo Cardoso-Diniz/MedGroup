@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai_SpMed_webAPI.Domains;
 using senai_SpMed_webAPI.Properties.Interfaces;
-using senai_SpMed_webAPI.Repositories;
+using senai_SpMed_webAPI.Properties.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +14,36 @@ namespace senai_SpMed_webAPI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioPossuiController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
-        private IUsuarioPossuiRepository Tipo { get; set; }
+        private IUsuarioRepository Usuario { get; set; }
 
-        public UsuarioPossuiController()
+        public UsuarioController()
         {
-            Tipo = new UsuarioPossuiRepository();
+            Usuario = new UsuarioRepository();
         }
 
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Listar()
         {
             try
             {
-                return Ok(Tipo.Listar());
+                return Ok(Usuario.Listar());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [Authorize(Roles = "3")]
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            try
+            {
+                return Ok(Usuario.BuscarPorId(id));
             }
             catch (Exception ex)
             {
@@ -38,12 +53,14 @@ namespace senai_SpMed_webAPI.Controllers
 
         [Authorize(Roles = "2")]
         [HttpPost]
-        public IActionResult Cadastrar(UsuarioPossui novaUsuarioPossui)
+        public IActionResult Cadastro(Usuario NovoUser)
         {
             try
             {
-                Tipo.Cadastrar(novaUsuarioPossui);
-                return StatusCode(201);
+                Usuario.Cadastrar(NovoUser);
+
+                return Ok(Usuario.Listar().Last());
+                //return StatusCode(201); 
             }
             catch (Exception ex)
             {
@@ -51,13 +68,14 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
-        public IActionResult Deletar(int id, UsuarioPossui UsuarioPossuiDeletar)
+        public IActionResult Deletar(int id)
         {
             try
             {
-                Tipo.Deletar(id, UsuarioPossuiDeletar);
-                return StatusCode(204);
+                Usuario.Deletar(id);
+                return Ok("Usuario Deletado");
             }
             catch (Exception ex)
             {
@@ -65,13 +83,14 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, UsuarioPossui  UsuarioPossuiAtualizada)
+        public IActionResult Atualizar(int id, Usuario NovoUser)
         {
             try
             {
-                Tipo.Atualizar(id, UsuarioPossuiAtualizada);
-                return StatusCode(204);
+                Usuario.Atualizar(id, NovoUser);
+                return Ok("Usuario Atualizado");
             }
             catch (Exception ex)
             {

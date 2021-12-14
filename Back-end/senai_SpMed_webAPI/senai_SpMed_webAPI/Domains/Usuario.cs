@@ -10,13 +10,17 @@ namespace senai_SpMed_webAPI.Domains
         public Usuario()
         {
             Medicos = new HashSet<Medico>();
-            UsuarioPossuis = new HashSet<UsuarioPossui>();
+            Pacientes = new HashSet<Paciente>();
         }
 
         public int IdUsuario { get; set; }
-        public string TituloUsuario { get; set; }
+        public int? IdTipoUsuario { get; set; }
+        public string NomeUsuario { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
 
+        public virtual TipoUsuario IdTipoUsuarioNavigation { get; set; }
         public virtual ICollection<Medico> Medicos { get; set; }
-        public virtual ICollection<UsuarioPossui> UsuarioPossuis { get; set; }
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

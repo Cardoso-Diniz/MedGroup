@@ -12,31 +12,101 @@ namespace senai_SpMed_webAPI.Repositories
     public class ConsultaRepository : IConsultaRepository
     {
         MedGroupContext ctx = new MedGroupContext();
-        public void Atualizar(int idConsulta, Consultum ConsultaAtualizada)
+        public void Atualizar(int id, Consultum NovaConsulta)
         {
-            Consultum ConBuscada = ctx.Consulta.Find(idConsulta);
-            if (ConsultaAtualizada.DescricaoConsulta != null)
+            Consultum ConBuscado = BuscarPorId(id);
+
+            if (NovaConsulta.IdPaciente > 0 && NovaConsulta.IdMedico > 0 && NovaConsulta.IdSituacao > 0 && NovaConsulta.DataConsulta != DateTime.Now && NovaConsulta.Descricao != null)
             {
-                ConBuscada.DescricaoConsulta = ConsultaAtualizada.DescricaoConsulta;
+                ConBuscado.IdPaciente = NovaConsulta.IdPaciente;
+                ConBuscado.IdMedico = NovaConsulta.IdMedico;
+                ConBuscado.IdSituacao = NovaConsulta.IdSituacao;
+                ConBuscado.DataConsulta = NovaConsulta.DataConsulta;
+                ConBuscado.Descricao = NovaConsulta.Descricao;
+
+                ctx.Consulta.Update(ConBuscado);
+
+                ctx.SaveChanges();
             }
-            ctx.Consulta.Update(ConBuscada);
-            ctx.SaveChanges();
+
+
+        }
+        public void AtualizarDescricao(int id, string DescricaoAtualizada)
+        {
+            Consultum ConsultaBuscada = BuscarPorId(id);
+
+            if (DescricaoAtualizada != null && ConsultaBuscada != null)
+            {
+                ConsultaBuscada.Descricao = DescricaoAtualizada;
+
+                ctx.Consulta.Update(ConsultaBuscada);
+
+                ctx.SaveChanges();
+            }
         }
 
         public Consultum BuscarPorId(int id)
         {
-            return ctx.Consulta.FirstOrDefault(e => e.IdConsulta == id); throw new NotImplementedException();
+            return ctx.Consulta
+                .Include("IdPacienteNavigation")
+                .Include("IdMedicoNavigation")
+                .Include("IdSituacaoNavigation")
+                .FirstOrDefault(e => e.IdConsulta == id);
         }
 
-        public void Cadastrar(Consultum novaConsulta)
+        public void Cadastrar(Consultum NovaConsulta)
         {
-            ctx.Consulta.Update(novaConsulta);
+            ctx.Consulta.Add(NovaConsulta);
             ctx.SaveChanges();
         }
 
-        public void Deletar(int idConsulta, Consultum ConsultaDeletar)
+        public List<Consultum> ListarMinhas(int id)
         {
-            Consultum ConBuscada = ctx.Consulta.Find(idConsulta);
+
+
+            return ctx.Consulta
+               .Select(c => new Consultum
+               {
+                   IdConsulta = c.IdConsulta,
+                   DataConsulta = c.DataConsulta,
+                   Descricao = c.Descricao,
+                   IdPacienteNavigation = new Paciente
+                   {
+                       IdUsuario = c.IdPacienteNavigation.IdUsuario,
+                       IdPaciente = c.IdPacienteNavigation.IdPaciente,
+                       NomePaciente = c.IdPacienteNavigation.NomePaciente,
+                       DataNasc = c.IdPacienteNavigation.DataNasc,
+                       Telefone = c.IdPacienteNavigation.Telefone,
+                       Rg = c.IdPacienteNavigation.Rg,
+                       Cpf = c.IdPacienteNavigation.Cpf,
+                   },
+                   IdMedicoNavigation = new Medico
+                   {
+                       IdUsuario = c.IdMedicoNavigation.IdUsuario,
+                       IdMedico = c.IdMedicoNavigation.IdMedico,
+                       NomeMed = c.IdMedicoNavigation.NomeMed,
+                       Crm = c.IdMedicoNavigation.Crm,
+                       IdEspecialidadeNavigation = new Especialidade
+                       {
+                           IdEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.IdEspecialidade,
+                           TituloEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.TituloEspecialidade
+                       },
+                   },
+                   IdSituacaoNavigation = new Situacao
+                   {
+                       IdSituacao = c.IdSituacaoNavigation.IdSituacao,
+                       Situacao1 = c.IdSituacaoNavigation.Situacao1
+                   }
+               })
+                 .Where(c => c.IdMedicoNavigation.IdUsuario == id || c.IdPacienteNavigation.IdUsuario == id)
+                 .ToList();
+        }
+
+
+
+        public void Deletar(int id)
+        {
+            Consultum ConBuscada = ctx.Consulta.Find(id);
             ctx.Consulta.Remove(ConBuscada);
             ctx.SaveChanges();
         }
@@ -46,41 +116,60 @@ namespace senai_SpMed_webAPI.Repositories
             return ctx.Consulta.ToList();
         }
 
-        public List<Consultum> ListarTudo()
+        public List<Consultum> ListarTodos()
         {
             return ctx.Consulta
-            .Include(e => e.IdPacienteNavigation)
-            .Include(e => e.IdMedicoNavigation)
-            .Include(e => e.IdSituacaoNavigation)
-            .ToList();
+                 .Select(c => new Consultum()
+                 {
+                     IdConsulta = c.IdConsulta,
+                     IdMedico = c.IdMedico,
+                     IdSituacao = c.IdSituacao,
+                     IdPaciente = c.IdPaciente,
+                     DataConsulta = c.DataConsulta,
+                     Descricao = c.Descricao,
+                     IdPacienteNavigation = new Paciente
+                     {
+                         IdPaciente = c.IdPacienteNavigation.IdPaciente,
+                         NomePaciente = c.IdPacienteNavigation.NomePaciente,
+                         DataNasc = c.IdPacienteNavigation.DataNasc,
+                         Telefone = c.IdPacienteNavigation.Telefone,
+                         Rg = c.IdPacienteNavigation.Rg,
+                         Cpf = c.IdPacienteNavigation.Cpf,
+                     },
+                     IdMedicoNavigation = new Medico
+                     {
+                         IdMedico = c.IdMedicoNavigation.IdMedico,
+                         NomeMed = c.IdMedicoNavigation.NomeMed,
+                         Crm = c.IdMedicoNavigation.Crm,
+                         IdEspecialidadeNavigation = new Especialidade
+                         {
+                             IdEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.IdEspecialidade,
+                             TituloEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.TituloEspecialidade
+                         },
+
+                         IdClinicaNavigation = new Clinica
+                         {
+                             IdClinica = c.IdMedicoNavigation.IdClinicaNavigation.IdClinica,
+                             Cnpj = c.IdMedicoNavigation.IdClinicaNavigation.Cnpj,
+                             NomeClinica = c.IdMedicoNavigation.IdClinicaNavigation.NomeClinica,
+                             RazaoSocial = c.IdMedicoNavigation.IdClinicaNavigation.RazaoSocial
+                         }
+                     },
+                     IdSituacaoNavigation = new Situacao
+                     {
+                         IdSituacao = c.IdSituacaoNavigation.IdSituacao,
+                         Situacao1 = c.IdSituacaoNavigation.Situacao1
+                     }
+                 })
+                 .ToList();
         }
 
-        public List<Consultum> MedicoCon(int id)
-        {
-            Medico MedBuscado = ctx.Medicos.FirstOrDefault(e => e.IdUsuarioPossui == id);
-            return ctx.Consulta
-            .Include(e => e.IdPacienteNavigation)
-            .Include(e => e.IdSituacaoNavigation)
-            .Where(e => e.IdMedico == MedBuscado.IdMedico)
-            .ToList();
-        }
-
-        public List<Consultum> PacienteCon(int id)
-        {
-            Paciente PacBuscado = ctx.Pacientes.FirstOrDefault(e => e.IdUsuarioPossui == id);
-            return ctx.Consulta
-            .Include(e => e.IdMedicoNavigation)
-            .Include(e => e.IdMedicoNavigation.IdClinicaNavigation)
-            .Include(e => e.IdPacienteNavigation)
-            .Where(e => e.IdPaciente == PacBuscado.IdPaciente)
-            .ToList();
-        }
-
-        public void Status(int idConsulta, string ConsultaStatus)
+        public void Situacao(int id, string status)
         {
             Consultum consulta = ctx.Consulta
-            .FirstOrDefault(e => e.IdConsulta == idConsulta);
-            switch (ConsultaStatus)
+                .FirstOrDefault(e => e.IdConsulta == id);
+
+            switch (status)
             {
                 case "1":
                     consulta.IdSituacao = 1;

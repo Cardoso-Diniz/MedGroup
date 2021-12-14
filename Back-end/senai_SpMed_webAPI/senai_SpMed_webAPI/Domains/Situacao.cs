@@ -13,7 +13,7 @@ namespace senai_SpMed_webAPI.Domains
         }
 
         public int IdSituacao { get; set; }
-        public string Status { get; set; }
+        public string Situacao1 { get; set; }
 
         public virtual ICollection<Consultum> Consulta { get; set; }
     }

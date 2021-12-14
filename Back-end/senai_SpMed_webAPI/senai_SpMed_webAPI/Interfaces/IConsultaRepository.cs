@@ -8,15 +8,15 @@ namespace senai_SpMed_webAPI.Properties.Interfaces
 {
     interface IConsultaRepository
     {
-        List<Consultum> ListarTudo();
+        List<Consultum> ListarTodos();
         List<Consultum> ListarCon();
-        List<Consultum> MedicoCon(int id);
-        List<Consultum> PacienteCon(int id);
+        List<Consultum> ListarMinhas(int id);
         Consultum BuscarPorId(int id);
-        void Cadastrar(Consultum novaConsulta);
-        void Atualizar(int idConsulta, Consultum ConsultaAtualizada);
-        void Deletar (int idConsulta, Consultum ConsultaDeletar);
-        void Status (int idConsulta, string ConsultaStatus);
+        void Cadastrar(Consultum NovaConsulta);
+        void Deletar(int id);
+        void Atualizar(int id, Consultum NovaConsulta);
+        void AtualizarDescricao(int id, string DescricaoAtualizada);
+        void Situacao(int id, string status);
 
     }
 }

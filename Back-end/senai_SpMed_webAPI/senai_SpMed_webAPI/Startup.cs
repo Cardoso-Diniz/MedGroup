@@ -44,7 +44,7 @@ namespace senai_SpMed_webAPI
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Medical-chave-autenticacao")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spmedical-chave-autenticacao")),
                         ClockSkew = TimeSpan.FromMinutes(30),
                         ValidIssuer = "MedGrup.webApi",
                         ValidAudience = "MedGrup.webApi"

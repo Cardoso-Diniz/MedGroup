@@ -12,19 +12,21 @@ namespace senai_SpMed_webAPI.Properties.Repositories
     public class PacienteRepository : IPacienteRepository
     {
         MedGroupContext ctx = new MedGroupContext();
-        public void Atualizar(int idPaciente, Paciente PacienteAtualizada)
+        public void Atualizar(int id, Paciente NovoPaciente)
         {
-            Paciente novaPaciente = ctx.Pacientes.Find(idPaciente);
-            if (PacienteAtualizada.NomePaciente != null)
+            Paciente PacienteBuscado = ctx.Pacientes.Find(id);
+
+            if (NovoPaciente.NomePaciente != null)
             {
-                novaPaciente.NomePaciente = PacienteAtualizada.NomePaciente;
+                PacienteBuscado.NomePaciente = NovoPaciente.NomePaciente;
             }
 
-            if (PacienteAtualizada.Telefone != null)
+            if (NovoPaciente.Telefone != null)
             {
-                novaPaciente.Telefone = PacienteAtualizada.Telefone;
+                PacienteBuscado.Telefone = NovoPaciente.Telefone;
             }
-            ctx.Pacientes.Update(novaPaciente);
+
+            ctx.Pacientes.Update(PacienteBuscado);
             ctx.SaveChanges();
         }
 
@@ -33,16 +35,16 @@ namespace senai_SpMed_webAPI.Properties.Repositories
             return ctx.Pacientes.FirstOrDefault(e => e.IdPaciente == id);
         }
 
-        public void Cadastrar(Paciente novaPaciente)
+        public void Cadastrar(Paciente NovoPaciente)
         {
-            ctx.Pacientes.Update(novaPaciente);
+            ctx.Pacientes.Add(NovoPaciente);
             ctx.SaveChanges();
         }
 
         public void Deletar(int id)
         {
-            Paciente novaPaciente = ctx.Pacientes.Find(id);
-            ctx.Pacientes.Remove(novaPaciente);
+            Paciente PacienteBuscado = ctx.Pacientes.Find(id);
+            ctx.Pacientes.Remove(PacienteBuscado);
             ctx.SaveChanges();
         }
 
@@ -54,8 +56,8 @@ namespace senai_SpMed_webAPI.Properties.Repositories
         public List<Paciente> ListarTudo()
         {
             return ctx.Pacientes
-            .Include(e => e.Consulta)
-            .ToList();
+                .Include(e => e.Consulta)
+                .ToList();
         }
     }
 }

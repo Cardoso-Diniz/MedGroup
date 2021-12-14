@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using senai_SpMed_webAPI.Domains;
 using senai_SpMed_webAPI.Properties.Interfaces;
 using senai_SpMed_webAPI.Repositories;
+using senai_SpMed_webAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -24,7 +25,7 @@ namespace senai_SpMed_webAPI.Controllers
             Con = new ConsultaRepository();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -38,13 +39,13 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
-        [HttpGet("ListarTudo")]
-        public IActionResult ListarTudo()
+        [Authorize(Roles = "2")]
+        [HttpGet("ListarTodos")]
+        public IActionResult ListarTodos()
         {
             try
             {
-                return Ok(Con.ListarTudo());
+                return Ok(Con.ListarTodos());
             }
             catch (Exception ex)
             {
@@ -52,15 +53,15 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        
-        [HttpGet("UsuarioConsultas")]
-        public IActionResult UsuarioConsulta()
+        [Authorize(Roles = "1, 3")]
+        [HttpGet("Minhas")]
+        public IActionResult ListarMinhas()
         {
             try
             {
                 int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
-                return Ok(Con.MedicoCon(idUsuario));
+                return Ok(Con.ListarMinhas(idUsuario));
             }
             catch (Exception ex)
             {
@@ -69,9 +70,10 @@ namespace senai_SpMed_webAPI.Controllers
         }
 
 
+
         [Authorize(Roles = "3")]
         [HttpGet("{id}")]
-        public IActionResult BuscarId(int id)
+        public IActionResult BuscarPorId(int id)
         {
             try
             {
@@ -98,13 +100,13 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
-        public IActionResult Deletar(int id, Consultum ConDeletar)
+        public IActionResult Deletar(int id)
         {
             try
             {
-                Con.Deletar(id, ConDeletar);
+                Con.Deletar(id);
                 return StatusCode(204);
             }
             catch (Exception ex)
@@ -113,7 +115,7 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "2")]
         [HttpPut("{id}")]
         public IActionResult AtualizarDados(int id, Consultum NovaCon)
         {
@@ -128,13 +130,68 @@ namespace senai_SpMed_webAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "3s")]
-        [HttpPatch("{id}")]
+        [Authorize(Roles = "3")]
+        [HttpPut("Situacao/{id}")]
+        public IActionResult AtualizarDescricao(int id, AtualizarDescricaoViewModel AtualizarDescricao)
+        {
+            try
+            {
+                Consultum ConsultaBuscada = Con.BuscarPorId(id);
+
+                if (ConsultaBuscada != null)
+                {
+
+                    Con.AtualizarDescricao(id, AtualizarDescricao.Descricao);
+
+                }
+                else
+                {
+                    return BadRequest(new { mensagem = "Consulta informada não encontrada" });
+                }
+
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [Authorize(Roles = "2")]
+        [HttpPatch("situacao/{id}")]
         public IActionResult Patch(int id, Consultum status)
         {
             try
             {
-                Con.Status(id, status.IdSituacao.ToString());
+                Con.Situacao(id, ToString());
+                return StatusCode(204);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [Authorize(Roles = "3")]
+        [HttpPatch("descricao/{id}")]
+        public IActionResult PatchDesc(int id, AtualizarDescricaoViewModel AtualizarDescricao)
+        {
+
+            try
+            {
+                Consultum ConsultaBuscada = Con.BuscarPorId(id);
+
+                if (ConsultaBuscada != null)
+                {
+
+                    Con.AtualizarDescricao(id, AtualizarDescricao.Descricao);
+
+                }
+                else
+                {
+                    return BadRequest(new { mensagem = "Consulta informada não encontrada" });
+                }
+
                 return StatusCode(204);
             }
             catch (Exception ex)
