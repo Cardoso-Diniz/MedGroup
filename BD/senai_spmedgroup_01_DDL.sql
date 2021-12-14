@@ -1,91 +1,82 @@
-create database MedGroup;
+create database Medgroup;
+GO
 
-USE MedGroup
+USE Medgroup;
 
-CREATE TABLE Endereco(
-idEndereco INT PRIMARY KEY IDENTITY,
-Rua VARCHAR(200),
-Numero VARCHAR(200),
-Bairro VARCHAR(200),
-Cidade VARCHAR(200),
-Cep VARCHAR(200)
+CREATE TABLE Endereco(	
+	idEndereco INT PRIMARY KEY IDENTITY,
+	rua VARCHAR(400),
+	numero INT,
+	cidade VARCHAR(200),
+	estado VARCHAR(200),
+	cep VARCHAR(50)
 );
 GO
 
 CREATE TABLE Clinica(
-idClinica INT PRIMARY KEY IDENTITY,
-idEndereco INT FOREIGN KEY REFERENCES Endereco(idEndereco),
-NomeDado VARCHAR(100),
-CPNJ VARCHAR(100),
-RazaoSocial VARCHAR(500),
-AberturaHorario VARCHAR(100),
-FechamentoHorario VARCHAR(100),
+	idClinica INT PRIMARY KEY IDENTITY,
+	idEndereco INT FOREIGN KEY REFERENCES Endereco(idEndereco),
+	nomeClinica VARCHAR(200),
+	cnpj VARCHAR(50),
+	razaoSocial VARCHAR(200)
+);
+GO
+
+CREATE TABLE Especialidade(
+	idEspecialidade INT PRIMARY KEY IDENTITY,
+	tituloEspecialidade VARCHAR(100)
+);
+GO
+
+CREATE TABLE TipoUsuario(
+	idTipoUsuario INT PRIMARY KEY IDENTITY,
+	tituloTipoUsuario VARCHAR(100)
 );
 GO
 
 CREATE TABLE Usuario(
-idUsuario INT PRIMARY KEY IDENTITY,
-TituloUsuario VARCHAR(200),
-);
-GO
-
-CREATE TABLE UsuarioPossui(
-idUsuarioPossui INT PRIMARY KEY IDENTITY,
-idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
-Email VARCHAR(200),
-Senha VARCHAR(200),
-);
-GO
-
-CREATE TABLE Paciente(
-idPaciente INT PRIMARY KEY IDENTITY,
-idUsuarioPossui INT FOREIGN KEY REFERENCES UsuarioPossui(idUsuarioPossui),
-idEndereco INT FOREIGN KEY REFERENCES Endereco(idEndereco),
-NomePaciente VARCHAR(200),
-DataNascimento Date,
-Telefone VARCHAR(200),
-Rg VARCHAR(200),
-Cpf VARCHAR(200),
+	idUsuario INT PRIMARY KEY IDENTITY,
+	idTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(idTipoUsuario),
+	nomeUsuario VARCHAR(200),
+	email VARCHAR(200),
+	senha VARCHAR(100)
 );
 GO
 
 CREATE TABLE Medico(
-idMedico INT PRIMARY KEY IDENTITY,
-idUsuarioPossui INT FOREIGN KEY REFERENCES UsuarioPossui(idUsuarioPossui),
-idClinica INT FOREIGN KEY REFERENCES Clinica(idClinica),
-idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
-NomeMedico VARCHAR(200),
-CRM VARCHAR(200),
+	idMedico INT PRIMARY KEY IDENTITY, 
+	idClinica INT FOREIGN KEY REFERENCES Clinica(idClinica),
+	idEspecialidade INT FOREIGN KEY REFERENCES Especialidade(idEspecialidade),
+	idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+	nomeMed VARCHAR(200),
+	crm VARCHAR(200)
+);
+GO
+
+CREATE TABLE Paciente(
+	idPaciente INT PRIMARY KEY IDENTITY,
+	idEndereco INT FOREIGN KEY REFERENCES Endereco(idEndereco), 
+	idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+	nomePaciente VARCHAR(200),
+	rg VARCHAR(200),
+	cpf VARCHAR(200), 
+	dataNasc DATETIME,
+	telefone VARCHAR(200)
 );
 GO
 
 CREATE TABLE Situacao(
-idSituacao INT PRIMARY KEY IDENTITY,
-Status VARCHAR(200),
+	idSituacao INT PRIMARY KEY IDENTITY,
+	situacao VARCHAR(50),
 );
 GO
 
 CREATE TABLE Consulta(
-idConsulta INT PRIMARY KEY IDENTITY,
-idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
-idMedico INT FOREIGN KEY REFERENCES Medico(idMedico),
-idSituacao INT FOREIGN KEY REFERENCES Situacao(idSituacao),
-DataConsulta SMALLDATETIME,
-DescricaoConsulta VARCHAR(500)
+	idConsulta INT PRIMARY KEY IDENTITY,
+	idMedico INT FOREIGN KEY REFERENCES Medico(idMedico),
+	idSituacao INT FOREIGN KEY REFERENCES Situacao(idSituacao),
+	idPaciente INT FOREIGN KEY REFERENCES Paciente(idPaciente),
+	descricao VARCHAR(200),
+	dataConsulta DATETIME,
 );
-GO
-
-
-CREATE TABLE Especialidade(
-	idEspecialidade INT PRIMARY KEY IDENTITY,
-	NomeEspecialidades VARCHAR(100)
-);
-GO
-
-ALTER TABLE Medico
-ADD idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario)
-GO
-
-ALTER TABLE Paciente
-ADD idEspecialidade INT FOREIGN KEY REFERENCES Especialidade(idEspecialidade)
 GO
