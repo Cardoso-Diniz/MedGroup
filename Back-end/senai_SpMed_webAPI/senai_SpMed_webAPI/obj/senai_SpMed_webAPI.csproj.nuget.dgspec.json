@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {}
+    "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {
+    "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
         "projectName": "senai_SpMed_webAPI",
-        "projectPath": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+        "projectPath": "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
         "packagesPath": "C:\\Users\\guica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
+        "outputPath": "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\guica\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,167 @@
+/* Reset da página */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Container */
+
+.container {
+    width: 1355px;
+    margin: 0 auto;
+}
+
+/* Conteúdo */
+
+.main_cadastro {
+    background-color: #6DAFEC;
+    padding: 100px 0px;
+    height: 814px;
+}
+
+.container_consultas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+h1 {
+    color: white;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.box_consulta-cadastro {
+    border: white solid 3px;
+    border-radius: 10px;
+    padding: 45px 60px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; */
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: white;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+}
+
+.box_info-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.box_info-cadastro input {
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    text-align: justify;
+    color: white;
+    border: white solid 3px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    width: 550px;
+    padding: 3px 10px;
+    background-color: unset;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.box_info-cadastro ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1;  
+}
+
+.box_info-cadastro button {
+    width: 197px;
+    height: 60px;
+    background: #055BC0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    border: none;
+    cursor: pointer ;
+}
+
+#descricao {
+    height: 100px;
+}
+
+@media(max-width: 1366px){
+    .container{
+        width: 1000px;
+    }
+
+    .cor_login{
+        padding-top: 50px;
+    }
+
+    .box_login{
+        padding: 25px 10px;
+    }
+}
+
+@media(max-width: 800px){
+    .main_login{
+        height: 800px;
+        background-size: unset;
+    }
+    .cor_login{
+        height: 800px;
+    }
+}
+
+@media(max-width: 600px){
+    .main_login{
+        height: 800px;
+        background-size: unset;
+    }
+    .cor_login{
+        height: 800px;
+    }
+}
+
+@media(max-width: 400px){
+    .main_login{
+        background-size: unset;
+    }
+    
+    .box_login{
+        padding: 25px 0px;
+    }
+
+    .box_info-cadastro{
+        padding: 10px;
+    }
+
+    .box_info-cadastro input{
+        width: 360px;
+        font-size: 20px;
+    }
+
+    .box_info-cadastro button{
+        width: 160px;
+        height: 50px;
+    }
+}

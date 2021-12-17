@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X0MPhOId8mt0M4BO/NjbgUdyjlWRR3wphzmr/AV9L/8TnKYHNW34tBmtQLjuG6EwWocjwp/UxbeEmZQckB6lRw==",
+  "dgSpecHash": "/WkeL/d+Yk2TpeixXL4CZR41+pn3JmPjyGpHsullFDqjrpxX3r2b5Hf1KebiQ7zyB6ZrJL6ix+xkRCr5ioBA1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+  "projectFilePath": "C:\\Users\\guica\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guica\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\guica\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.10\\microsoft.aspnetcore.authentication.jwtbearer.5.0.10.nupkg.sha512",
