@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {}
+    "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {
+    "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+        "projectUniqueName": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
         "projectName": "senai_SpMed_webAPI",
-        "projectPath": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
-        "packagesPath": "C:\\Users\\45626492836\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\45626492836\\Desktop\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
+        "projectPath": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\senai_SpMed_webAPI.csproj",
+        "packagesPath": "C:\\Users\\guica\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\guica\\Desktop\\SENAI\\MedGroup\\Back-end\\senai_SpMed_webAPI\\senai_SpMed_webAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\45626492836\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\guica\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,6 +83,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.12, 5.0.12]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -91,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
